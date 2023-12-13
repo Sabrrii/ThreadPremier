@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         tvTempsExecution = findViewById(R.id.tempsExecution);
         btnCalculer = findViewById(R.id.btnCalculer);
         lvListePremier = findViewById(R.id.listePremier);
-
         btnScroll = findViewById(R.id.btnScroll);
 
         //Initialisation des elements de la classe
@@ -56,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
         lvListePremier.setAdapter(adapter);
 
 
-
+        //Listener du bouton calculer
+        //Lorsque le bouton est cliqué, on lance le thread
+        //Le thread va calculer les nombres premiers et les ajouter à la liste
+        //Lorsque le thread a fini, il affiche le temps d'execution
         btnCalculer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,14 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 int nombreMax = Integer.parseInt(etInputNumber.getText().toString());
                 NombrePremierRunnable nombrePremierRunnable = new NombrePremierRunnable(listPremier, lvListePremier, tvTempsExecution, adapter);
                 nombrePremierRunnable.execute(nombreMax);
-
-
-
             }//onClick
 
 
         });//btnCalculer.setOnClickListener
 
+        //Listener du bouton scroll pour aller en bas de la liste
         btnScroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
